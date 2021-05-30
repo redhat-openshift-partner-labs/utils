@@ -131,13 +131,13 @@ type PasteContent struct {
 	Paste string `json:"paste"`
 }
 
-type WorldTime struct {
-	Status    string `json:"status"`
-	Message   string `json:"message"`
-	Formatted string `json:"formatted"`
-}
-
 type FormRequest struct {
 	Title string `json:"title" validate:"required"`
 	Body  string `json:"body" validate:"required"`
+}
+
+type UtcTime struct {
+	Status    string `json:"status"`
+	Message   string `json:"message"`
+	Formatted string `json:"formatted"`
 }

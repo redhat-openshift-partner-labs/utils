@@ -71,7 +71,7 @@ func CreateClusterDeployment(labRequest *LabRequest) {
 	// information from partner specific to the platform cluster should be installed on
 	// using AWS for now
 	plat := hivev1.Platform{
-		AWS:            &aws.Platform{
+		AWS: &aws.Platform{
 			CredentialsSecretRef: corev1.LocalObjectReference{Name: "hive-aws-creds"},
 			Region:               "us-west-2", // It could be useful to allow region selection based on where partner is
 			UserTags:             map[string]string{"LabID": labRequest.ID.String()},
@@ -83,17 +83,17 @@ func CreateClusterDeployment(labRequest *LabRequest) {
 	leasetime := []string{"one-day", "one-week", "two-weeks", "one-month"}
 
 	oplLabels := map[string]string{
-		"opl-region": labRequest.Availability,
+		"opl-region":     labRequest.Availability,
 		"opl-lease-time": leasetime[labRequest.LeaseTime],
 	}
 
 	charsFromID := strings.Split(labRequest.ID.String(), "-")[0]
 	cds := hivev1.ClusterDeploymentSpec{
-		ClusterName:          labRequest.ClusterName + "-" + charsFromID,
-		BaseDomain:           "opdev.io",
-		Platform:             plat,
-		ManageDNS:            false,
-		Provisioning:         &hivev1.Provisioning{
+		ClusterName: labRequest.ClusterName + "-" + charsFromID,
+		BaseDomain:  "opdev.io",
+		Platform:    plat,
+		ManageDNS:   false,
+		Provisioning: &hivev1.Provisioning{
 			InstallConfigSecretRef: &secretRef,
 			ImageSetRef:            &hivev1.ClusterImageSetReference{Name: string(labSecret.Data["openshift"])},
 			SSHPrivateKeySecretRef: &secretRef,
@@ -102,11 +102,11 @@ func CreateClusterDeployment(labRequest *LabRequest) {
 
 	cd := hivev1.ClusterDeployment{
 		ObjectMeta: metav1.ObjectMeta{
-			Name:                       labRequest.ID.String(),
-			Namespace:                  "hive",
-			Labels:											oplLabels,
+			Name:      labRequest.ID.String(),
+			Namespace: "hive",
+			Labels:    oplLabels,
 		},
-		Spec:       cds,
+		Spec: cds,
 	}
 
 	err = dc.Create(context.Background(), &cd)

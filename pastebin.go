@@ -206,7 +206,7 @@ func GeneratePrivateBinPaste(labs map[string]interface{}) map[string][]string {
 
 	config := Cfg{
 		Name:             "default",
-		Host:             "https://bin.apps.eng.opdev.io",
+		Host:             "https://bin.apps.eng.partner-lab.rhecoeng.com",
 		Username:         "dev",
 		Password:         "dev",
 		Expire:           "5min",

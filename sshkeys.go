@@ -10,7 +10,7 @@ import (
 )
 
 // GenerateSSHKeys creates SSH Keys for LabRequest
-func GenerateSSHKeys(uuid string) (publickey []byte, privatekey []byte){
+func GenerateSSHKeys(uuid string) (publickey []byte, privatekey []byte) {
 	// TODO: #1 instead of saving key to local file create OpenShift/K8s secret
 	//PrivateKeyFile := "/tmp/" + uuid
 	//PublicKeyFile := "/tmp/" + uuid + ".pub"
