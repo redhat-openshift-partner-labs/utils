@@ -41,23 +41,6 @@ type RequestForm struct {
     UpdatedAt time.Time `json:"updated_at" db:"updated_at"`
 }
 
-// LabRequestBranch is the branch created when a LabRequest has been validated
-// and approved. This branch is used when creating a PR for the LabRequest and
-// is based on latest master
-type LabRequestBranch struct {
-	Base string `json:"base"`
-	Lab  string `json:"labid"`
-}
-
-// LabRequestFile is the file generated for a pull request when a LabRequest
-// has been validated and approved. This file is created prior to creating the
-// pull request.
-type LabRequestFile struct {
-	FileName          string `json:"filename"`
-	FileCommitMessage string `json:"filecommitmessage"`
-	FileContent       string `json:"filecontent"`
-}
-
 type InstallConfig struct {
 	BaseDomain        string
 	WorkerReplicas    int
@@ -136,11 +119,6 @@ type PasteData struct {
 
 type PasteContent struct {
 	Paste string `json:"paste"`
-}
-
-type FormRequest struct {
-	Title string `json:"title" validate:"required"`
-	Body  string `json:"body" validate:"required"`
 }
 
 type UtcTime struct {
