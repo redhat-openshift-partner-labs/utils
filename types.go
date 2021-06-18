@@ -5,33 +5,40 @@ import (
 	"net/url"
 )
 
-// LabRequest is data captured from filling out the lab request Google Form.
-type LabRequest struct {
-	Timestamp                    string    `json:"time"`
-	Epoch                        int       `json:"epoch" validate:"required"`
-	ID                           uuid.UUID `json:"labid" validate:"omitempty"`
-	LeaseTime                    int       `json:"leaseTime" validate:"omitempty"`
-	PrimaryContactName           string    `json:"primaryContactName" validate:"required"`
-	PrimaryContactEmail          string    `json:"primaryContactEmail" validate:"required,email"`
-	PrimaryContactPhoneNumber    string    `json:"primaryContactPhoneNumber" validate:"omitempty"`
-	PrimaryContactConnectUser    bool      `json:"isPrimaryContactConnectUser" validate:"omitempty"`
-	SecondaryContactName         string    `json:"secondaryContactName" validate:"required"`
-	SecondaryContactEmail        string    `json:"secondaryContactEmail" validate:"required,email"`
-	SecondaryContactPhoneNumber  string    `json:"secondaryContactPhoneNumber" validate:"omitempty"`
-	SecondaryContactConnectUser  bool      `json:"isSecondaryContactConnectUser" validate:"omitempty"`
-	RedHatSponsor                string    `json:"redHatSponsor" validate:"required"`
-	Availability                 string    `json:"availability" validate:"required"`
-	CompanyName                  string    `json:"companyName" validate:"required"`
-	CompanyConnectPartner        bool      `json:"isCompanyConnectPartner" validate:"omitempty"`
-	CertificationProject         string    `json:"certificationProject" validate:"omitempty"`
-	IntendedCertificationProject string    `json:"intendedCertificationProject" validate:"omitempty"`
-	ProjectName                  string    `json:"projectName" validate:"omitempty"`
-	PublicSSHKey                 string    `json:"publicsshkey" validate:"omitempty"`
-	ClusterName                  string    `json:"clusterName" validate:"required"`
-	ClusterSize                  int       `json:"clusterSize" validate:"omitempty"`
-	OpenShiftVersion             string    `json:"openShiftVersion" validate:"required"`
-	Description                  string    `json:"description" validate:"omitempty"`
-	Notes                        string    `json:"notes" validate:"omitempty"`
+// RequestForm is used by pop to map your request_forms database table to your go code.
+type RequestForm struct {
+    ID uuid.UUID `json:"id" db:"id"`
+    Time string `json:"time" db:"time"`
+    Epoch string `json:"epoch" db:"epoch"`
+    Clusterid string `json:"clusterid" db:"clusterid"`
+    Generatedclustername string `json:"generatedclustername" db:"generatedclustername"`
+    Provider string `json:"provider" db:"provider"`
+    Openshiftversion string `json:"openshiftversion" db:"openshiftversion"`
+    Clustersize string `json:"clustersize" db:"clustersize"`
+    Companyname string `json:"companyname" db:"companyname"`
+    Connectpartner string `json:"connectpartner" db:"connectpartner"`
+    Sponsor string `json:"sponsor" db:"sponsor"`
+    Primaryname string `json:"primaryname" db:"primaryname"`
+    Primaryemail string `json:"primaryemail" db:"primaryemail"`
+    Primaryphone string `json:"primaryphone" db:"primaryphone"`
+    Primaryconnect string `json:"primaryconnect" db:"primaryconnect"`
+    Secondaryname string `json:"secondaryname" db:"secondaryname"`
+    Secondaryemail string `json:"secondaryemail" db:"secondaryemail"`
+    Secondaryphone string `json:"secondaryphone" db:"secondaryphone"`
+    Secondaryconnect string `json:"secondaryconnect" db:"secondaryconnect"`
+    Timezone string `json:"timezone" db:"timezone"`
+    Projectname string `json:"projectname" db:"projectname"`
+    Clustername string `json:"clustername" db:"clustername"`
+    Reservation string `json:"reservation" db:"reservation"`
+    Certproject string `json:"certproject" db:"certproject"`
+    Intendedcertproject string `json:"intendedcertproject" db:"intendedcertproject"`
+    Description string `json:"description" db:"description"`
+    Notes string `json:"notes" db:"notes"`
+    Startdate string `json:"startdate" db:"startdate"`
+    Enddate string `json:"enddate" db:"enddate"`
+    State string `json:"state" db:"state"`
+    CreatedAt time.Time `json:"created_at" db:"created_at"`
+    UpdatedAt time.Time `json:"updated_at" db:"updated_at"`
 }
 
 // LabRequestBranch is the branch created when a LabRequest has been validated
