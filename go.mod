@@ -1,4 +1,4 @@
-module github.com/rhecoeng/utils
+module github.com/redhat-openshift-partner-labs/utils
 
 go 1.16
 
